@@ -6,7 +6,7 @@ const fs = require('fs');
 const ProductsDAO = require('../../models/client/ProductsDAO');
 const ResponseClass = require('../../models/ResponseClass');
 
-exports.list = (app, req, res, next) => {
+exports.list = async (app, req, res, next) => {
   let resp = new ResponseClass();
 
   ProductsDAO.getAll(function(err, result) {
@@ -21,7 +21,7 @@ exports.list = (app, req, res, next) => {
   })
 }
 
-exports.listById = (app, req, res, next) => {
+exports.listById = async (app, req, res, next) => {
   let resp = new ResponseClass();
 
   ProductsDAO.getId(req.params.id, function(err, result) {
@@ -36,7 +36,7 @@ exports.listById = (app, req, res, next) => {
   })
 }
 
-exports.toSave = (app, req, res, next) => {
+exports.toSave = async (app, req, res, next) => {
   let resp = new ResponseClass();
 
   if(req.body.imagem != null) {
@@ -69,7 +69,7 @@ exports.toSave = (app, req, res, next) => {
   }
 }
 
-exports.update = (app, req, res, next) => {
+exports.update = async (app, req, res, next) => {
   let resp = new ResponseClass();
 
   if(req.body.imagem != null) {
@@ -98,7 +98,7 @@ exports.update = (app, req, res, next) => {
   })
 }
 
-exports.delete = (app, req, res, next) => {
+exports.delete = async (app, req, res, next) => {
   let resp = new ResponseClass();
 
   ProductsDAO.delete(req.params.id, function(err, result) {
